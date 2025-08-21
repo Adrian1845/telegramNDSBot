@@ -38,7 +38,7 @@ public class NDSBot extends TelegramLongPollingBot {
 
         log.info(String.format("Received message: %s", message));
 
-        if (message.equals("/start")) {
+        if (message.equals(BotConstants.start)) {
             sendLongMessage(chatId, BotConstants.greetings);
         } else {
             String roms;
@@ -55,7 +55,7 @@ public class NDSBot extends TelegramLongPollingBot {
         SendMessage message = new SendMessage();
         message.setChatId(chatId.toString());
         message.setText(roms);
-        message.enableHtml(true); // allow HTML parsing
+        message.enableHtml(true); // allow HTML parsing for beautifying message
         return message;
     }
 
@@ -73,7 +73,7 @@ public class NDSBot extends TelegramLongPollingBot {
                 }
             }
 
-            String chunk = text.substring(start, end); // if your text contains HTML
+            String chunk = text.substring(start, end);
             try {
                 execute(generateSendMessage(chatId, chunk));
             } catch (TelegramApiException e) {

@@ -36,9 +36,13 @@ public class ApiCall {
                 .uri(URI.create(apiUrl))
                 .GET()
                 .build();
+        // Get raw data from the web
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
+        // Get the list of all the roms
         List<RomEntry> roms = htmlParser.parseRomTable(response.body());
+
+        // Return only the roms we want
         return telegramFormatter.formatRomList(roms, query, filesUrl);
     }
 }

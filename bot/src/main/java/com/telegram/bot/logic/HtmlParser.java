@@ -20,6 +20,8 @@ public class HtmlParser {
         if (table == null) return Collections.emptyList();
 
         List<RomEntry> entries = new ArrayList<>();
+
+        // Fetch every row inside the main ROM table
         for (Element row : table.select(HtmlSelectors.ROWS)) {
             Element link = row.selectFirst(HtmlSelectors.LINK_CELL);
             if (link == null) continue;
