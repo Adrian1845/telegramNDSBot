@@ -1,0 +1,7 @@
+com\telegram\bot\domain\RomEntry.class
+com\telegram\bot\logic\ApiCall.class
+com\telegram\bot\logic\HtmlParser.class
+com\telegram\bot\BotConfig.class
+com\telegram\bot\logic\TelegramFormatter.class
+com\telegram\bot\BotMainApplication.class
+com\telegram\bot\NDSBot.class
