@@ -21,6 +21,7 @@ public class TelegramFormatter {
         if (roms.isEmpty()) return String.format(BotConstants.romsNotFound, escapeHtml(query));
 
         StringBuilder sb = new StringBuilder();
+        sb.append(String.format(BotConstants.romsFound, query)).append(HtmlSelectors.NEWLINE);
         for (RomEntry entry : roms) {
 
             // Match the rom with the game we want
@@ -34,7 +35,7 @@ public class TelegramFormatter {
                     .append(HtmlSelectors.NEWLINE).append(HtmlSelectors.NEWLINE);
         }
 
-        log.info(String.format(BotConstants.romsFound, sb.toString()));
+        log.info(sb.toString());
         return sb.toString();
     }
 
