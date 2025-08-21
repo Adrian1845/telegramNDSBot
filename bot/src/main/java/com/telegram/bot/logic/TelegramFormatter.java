@@ -17,17 +17,23 @@ public class TelegramFormatter {
     private final Logger log = LoggerFactory.getLogger(TelegramFormatter.class);
 
     public String formatRomList(List<RomEntry> roms, String query, String baseUrl) {
+
         if (roms.isEmpty()) return String.format(BotConstants.romsNotFound, escapeHtml(query));
 
         StringBuilder sb = new StringBuilder();
         for (RomEntry entry : roms) {
+
+            // Match the rom with the game we want
             if (!entry.getTitle().toLowerCase().contains(query.toLowerCase())) continue;
+
+            // Format the message
             sb.append(HtmlSelectors.BULLET).append(HtmlSelectors.LINK_OPEN).append(baseUrl)
                     .append(urlEncode(entry.getHref())).append(HtmlSelectors.LINK_CLOSE)
                     .append(escapeHtml(entry.getTitle())).append(HtmlSelectors.LINK_END).append(HtmlSelectors.NEWLINE)
                     .append(HtmlSelectors.SIZE_PREFIX).append(entry.getSize())
                     .append(HtmlSelectors.NEWLINE).append(HtmlSelectors.NEWLINE);
         }
+
         log.info(String.format(BotConstants.romsFound, sb.toString()));
         return sb.toString();
     }
